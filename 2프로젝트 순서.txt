@@ -9,5 +9,11 @@
 8. index.html 파일에 폰트 import
 
 
-9. layout 생성
+9. page 생성
+9-1.ask 페이지 생성
 10. input, select 컴포넌트로 분리
+11. FormInput 컴포넌트 분리
+12. 라우팅 설정
+13. result 컴포넌트 생성
+14. api 구성
+15. axios 설치
