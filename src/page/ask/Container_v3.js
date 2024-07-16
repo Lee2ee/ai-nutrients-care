@@ -1,7 +1,6 @@
 import { Button, Card } from "@mui/material";
 import React, { useState } from "react";
 import FormInput from "../../components/FormInput";
-import { useNavigate } from "react-router-dom";
 export default function Container_v3() {
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("남자");
@@ -63,10 +62,9 @@ export default function Container_v3() {
       onChange: healthHandleChange,
     },
   ];
-  const navigate = useNavigate(); // useNavigate 호출
 
   const handleButtonClick = () => {
-    navigate("/result"); // '/result' 경로로 이동
+    
   };
 
   return (

@@ -2,8 +2,6 @@ import { Button, Card, TextField } from "@mui/material";
 import React, { useState } from "react";
 import CustomInput from "../../components/CustomInput";
 import CustomSelect from "../../components/CustomSelect";
-import { useNavigate } from "react-router-dom";
-import { aiApi } from "../../api/api";
 
 export default function Container() {
   const [age, setAge] = useState("");
@@ -36,25 +34,10 @@ export default function Container() {
     { value: "주 6회" },
   ];
 
-  const navigate = useNavigate(); // useNavigate 호출
 
   const handleButtonClick = () => {
     // 쿼리 스트링 생성
 
-    const queryString = `
-    나이는${encodeURIComponent(age)}세,
-    성별은${encodeURIComponent(gender)},
-    운동은 ${encodeURIComponent(health)},
-    기타 특이사항은${encodeURIComponent(
-      healthStatus
-    )}인데 영양제 추천해주세요.`;
-    try {
-      const result = aiApi.askToAI(queryString);
-      //navigate(`/result/${queryString}`); // '/result' 경로로 이동
-      navigate(`/result/${encodeURIComponent(JSON.stringify(result))}`);
-    } catch (err) {
-      console.error("API 요청 중 에러 발생:", err);
-    }
   };
 
   return (
@@ -81,8 +64,8 @@ export default function Container() {
           <div className="flex mt-6">
             <label className="font-semibold mr-4 w-20">운동</label>
             <CustomSelect
-              onChange={healthStatusHandleChange}
-              value={healthStatus}
+              value={health}
+              onChange={healthHandleChange}
               options={healthArr}
             />
           </div>
@@ -94,8 +77,9 @@ export default function Container() {
               placeholder="건강 상태를 입력해주세요."
               multiline
               maxRows={4}
-              value={health}
-              onChange={healthHandleChange}
+              
+              onChange={healthStatusHandleChange}
+              value={healthStatus}
             />
           </div>
           <div className="flex mt-6">
